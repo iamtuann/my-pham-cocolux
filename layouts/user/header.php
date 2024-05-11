@@ -7,7 +7,7 @@
 <header class="header">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center gx-4">
-      <a href="/">
+      <a href="">
         <img src="assets/images/logo-full-black-cocolux.png" alt="">
       </a>
       <div class="d-flex align-items-center justify-content-end column-gap-4">
@@ -33,5 +33,44 @@
   </div>
 </header>
 <div class="nav-bar">
-
+  <div class="container">
+    <ul class="list-nav">
+      <li class="nav-item item-site active">
+        <a href="" class="nav-link">Danh mục sản phẩm</a>
+        <div class="menu-content">
+          <div class="menu-item">
+            <a href="" class="menu-btn">
+              Trang Điểm
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="" class="menu-btn">
+              Son Môi
+            </a>
+          </div>
+          <div class="menu-item">
+            <a href="" class="menu-btn">
+              Chăm sóc Da
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Khuyến mại</a>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Thương hiệu</a>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Giới thiệu</a>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Hàng mới về</a>
+      </li>
+      <li class="nav-item ms-auto"></li>
+      <li class="nav-item">
+        <a href="" class="nav-link">Tra cứu đơn hàng</a>
+      </li>
+    </ul>
+  </div>
 </div>

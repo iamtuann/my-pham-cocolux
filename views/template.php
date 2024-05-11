@@ -5,6 +5,7 @@
   }
   switch ($page) {
     case "":
+    case 'home':
       require 'views/home.php';
       break;
     case 'gio-hang':
