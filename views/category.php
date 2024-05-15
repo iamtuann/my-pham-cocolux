@@ -35,7 +35,7 @@
             $query1 = "SELECT name from category where id = ? ";
             $query = "WITH RankedTable AS (
                 SELECT product.*, product_image.path_url, brand.name as brand_name,
-                    ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id DESC) AS rn
+                    ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id ASC) AS rn
                 FROM product 
                 INNER JOIN product_category ON product.id = product_category.product_id 
                 INNER JOIN category ON category.id = product_category.category_id 
@@ -63,7 +63,7 @@
         $link = "?page=$page&key=$tukhoa";
         $sql_pro = "WITH RankedTable AS (
             SELECT product.*, product_image.path_url ,
-                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id DESC) AS rn
+                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id ASC) AS rn
             FROM product 
             inner JOIN product_image ON product.id = product_image.product_id 
             WHERE product.name LIKE '%".$tukhoa."%'
@@ -80,7 +80,7 @@
     if(isset($_GET["key"]) ) {
         $sql_pro = "WITH RankedTable AS (
             SELECT product.*, product_image.path_url ,brand.name as brand_name,
-                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id DESC) AS rn
+                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id ASC) AS rn
             FROM product 
             inner JOIN product_image ON product.id = product_image.product_id 
             inner join brand on brand.id = product.brand_id
@@ -105,7 +105,7 @@
         $result_brand_search = mysqli_fetch_array($result_brand_search);
         $sql_pro = "WITH RankedTable AS (
             SELECT product.*, product_image.path_url ,brand.name as brand_name,
-                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id DESC) AS rn
+                   ROW_NUMBER() OVER (PARTITION BY product.id ORDER BY product_image.id ASC) AS rn
                    FROM product 
         right JOIN product_image ON product.id = product_image.product_id 
         right JOIN brand ON brand.id = product.brand_id 
