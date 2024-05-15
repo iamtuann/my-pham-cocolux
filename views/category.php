@@ -188,28 +188,28 @@
                         <div class="card-group">
                             <div class="card-title">Sắp xếp theo</div>
                             <div class="card-items">
-                                <a class="card-item card-sort " href="<?php echo $link ?>&sort=1" data-name="sort"
-                                    data-value="1">
+                                <a class="card-item card-sort <?php echo isset($_GET["sort"]) && $_GET["sort"] == "1" ? "active": "" ?>"
+                                    href="<?php echo $link ?>&sort=1">
 
                                     Nổi bật
                                 </a>
-                                <a class="card-item card-sort " href="<?php echo $link ?>&sort=2" data-name="sort"
-                                    data-value="2">
+                                <a class="card-item card-sort <?php echo isset($_GET["sort"]) && $_GET["sort"] == "2" ? "active": "" ?> "
+                                    href="<?php echo $link ?>&sort=2">
 
                                     Bán chạy
                                 </a>
-                                <a class="card-item card-sort " href="<?php echo $link ?>&sort=3" data-name="sort"
-                                    data-value="3">
+                                <a class="card-item card-sort <?php echo isset($_GET["sort"]) && $_GET["sort"] == "3" ? "active": "" ?> "
+                                    href="<?php echo $link ?>&sort=3">
 
                                     Hàng mới
                                 </a>
-                                <a class="card-item card-sort " href="<?php echo $link ?>&sort=4" data-name="sort"
-                                    data-value="4">
+                                <a class="card-item card-sort <?php echo isset($_GET["sort"]) && $_GET["sort"] == "4" ? "active": "" ?> "
+                                    href="<?php echo $link ?>&sort=4">
 
                                     Giá cao tới thấp
                                 </a>
-                                <a class="card-item card-sort " href="<?php echo $link ?>&sort=5" data-name="sort"
-                                    data-value="5">
+                                <a class="card-item card-sort <?php echo isset($_GET["sort"]) && $_GET["sort"] == "5" ? "active": "" ?> "
+                                    href="<?php echo $link ?>&sort=5">
 
                                     Giá thấp tới cao
                                 </a>
