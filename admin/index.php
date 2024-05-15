@@ -28,20 +28,23 @@
 	<!-- css -->
 	<link rel="stylesheet" href="../assets/css/admin/common.css">
 	<link rel="stylesheet" href="../assets/css/admin/header.css">
+	<link rel="stylesheet" href="../assets/css/admin/sidebar.css">
 
   <title>Cocolux Admin</title>
 </head>
 <body>
-  <?php
-    include("../config/connect.php");
-    include("../layouts/admin/sidebar.php");
-  ?>
-  <div class="flex-grow-1">
+  <div class="d-flex h-100">
     <?php
-      include("../layouts/admin/header.php");
-      include("views/template.php"); 
-      include("../layouts/admin/footer.php");
+      include("../config/connect.php");
+      include("../layouts/admin/sidebar.php");
     ?>
+    <div class="flex-grow-1">
+      <?php
+        include("../layouts/admin/header.php");
+        include("views/template.php"); 
+        // include("../layouts/admin/footer.php");
+      ?>
+    </div>
   </div>
 </body>
 </html>

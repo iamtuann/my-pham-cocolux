@@ -1,3 +1,10 @@
+<?php
+  $page = "";
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+  }
+?>
+
 <div class="top-header">
   <div class="container">
     <i class="fal fa-phone-alt"></i>
