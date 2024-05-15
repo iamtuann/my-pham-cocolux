@@ -14,6 +14,12 @@
     case 'san-pham':
       include('views/product.php');
       break;
+    case 'danh-muc':
+      include('views/category.php');
+      break;
+    case 'tim-kiem':
+      include('views/category.php');
+      break;      
     default:
       require 'views/errors/404.php';
       break;
