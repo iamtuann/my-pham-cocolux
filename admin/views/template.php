@@ -17,6 +17,9 @@
     case "brand":
       require 'views/brand.php';
       break;
+    case "update-brand":
+      require 'views/brand_update.php';
+      break;
     case "user":
       require 'views/user.php';
       break;

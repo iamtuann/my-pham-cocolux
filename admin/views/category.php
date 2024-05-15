@@ -3,14 +3,14 @@
   $query = "Select * from category";
   $categories = mysqli_query($connect, $query);
 
-  //add new
+  
   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addNewBtn'])){
     $newCate=$_POST['new_cate_name'];
     $sql_them="INSERT INTO category (name,status) VALUE('".$newCate."', '1'); ";
     mysqli_query($connect,$sql_them);
     header('Location: ?page=category');
   } elseif (isset($_POST['deleteBtn'])) {
-    $id=$_POST['delete_product_id'];
+    $id=$_POST['delete_cate_id'];
     $sql_xoa="DELETE FROM category WHERE id ='".$id."';";
     mysqli_query($connect,$sql_xoa);
     header('Location: ?page=category');
@@ -105,7 +105,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            Bạn có chắc chắn muốn xóa sản phẩm <span id="productName"></span> không?
+            Bạn có chắc chắn muốn xóa danh mục <span id="cateName"></span> không?
             <input type="hidden" name="delete_cate_id" id="delete_cate_id">
           </div>
           <div class="modal-footer">
