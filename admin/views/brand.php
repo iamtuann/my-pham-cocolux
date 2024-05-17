@@ -133,11 +133,6 @@
       </div>
     </div>
   </div>
-
-  <form id="changeStatusForm" method="POST" action="">
-    <input type="hidden" name="change_cate_id" id="change_cate_id">
-    <input type="hidden" name="cate_status" id="cate_status">
-  </form>
 </div>
 
 <script>

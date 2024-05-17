@@ -38,7 +38,7 @@
       include("../config/connect.php");
       include("../layouts/admin/sidebar.php");
     ?>
-    <div class="flex-grow-1">
+    <div class="flex-grow-1 overflow-y-hidden">
       <?php
         include("../layouts/admin/header.php");
         include("views/template.php"); 

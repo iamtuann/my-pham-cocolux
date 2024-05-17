@@ -14,6 +14,12 @@
     case "product":
       require 'views/product.php';
       break;
+    case "add-product":
+      require 'views/product_add.php';
+      break;
+    case "update-product":
+      require 'views/product.php';
+      break;
     case "brand":
       require 'views/brand.php';
       break;

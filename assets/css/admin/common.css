@@ -62,3 +62,11 @@ th, td {
 .form-check-input {
   cursor: pointer;
 }
+.select-field {
+  outline: none;
+  border: 1px solid #333;
+  padding: 5px 8px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 8px;
+}
