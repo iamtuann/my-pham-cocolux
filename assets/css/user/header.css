@@ -48,9 +48,11 @@
   font-size: 12px;
   cursor: pointer;
 }
+
 .header-action i {
   font-size: 24px;
 }
+
 .count {
   position: absolute;
   width: 20px;
@@ -85,6 +87,7 @@
 .nav-item {
   position: relative;
 }
+
 .nav-item.item-site {
   z-index: 10;
   width: 220px;
@@ -106,10 +109,12 @@
   padding: 0 16px;
   justify-content: center;
 }
+
 .nav-item:hover .nav-link {
   background: #272727;
   color: #fff;
 }
+
 .nav-item .menu-content {
   display: none;
   position: absolute;
@@ -121,18 +126,23 @@
   white-space: nowrap;
   background: #fff;
 }
+
 .nav-item.active .menu-content {
   display: block;
 }
+
 .nav-item:hover .menu-content {
   display: block;
 }
+
 .item-site .menu-content .menu-item {
   position: unset;
 }
+
 .menu-content .menu-item {
   position: relative;
 }
+
 .menu-item .menu-btn {
   display: flex;
   align-items: center;
