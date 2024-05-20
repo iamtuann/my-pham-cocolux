@@ -1,6 +1,6 @@
 <?php
   //get list
-  $query = "Select id, name, price_original, price_final, quantity, status from product";
+  $query = "Select id, name, price_original, price_final, quantity, status, sold from product";
   $products = mysqli_query($connect, $query);
   //delete
   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deleteBtn'])){
@@ -38,9 +38,11 @@
 </style>
 <div class="container pt-4">
   <div class="actions d-flex justify-content-end my-3">
-    <button class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addModal">
-      Thêm mới
-    </button>
+    <a href="<?php echo '?page=add-product'?>">
+      <button class="add-new-btn">
+        Thêm mới
+      </button>
+    </a>
   </div>
   <table>
     <tr>
@@ -48,7 +50,8 @@
       <th>Tên</th>
       <th>Giá gốc</th>
       <th>Giá bán</th>
-      <th>Số lượng</th>
+      <th>Số lượng còn</th>
+      <th>Đã bán</th>
       <th>Trang thái</th>
       <th>Hành động</th>
     </tr>
@@ -62,6 +65,7 @@
         <td><?php echo number_format($row['price_original']); ?></td>
         <td><?php echo number_format($row['price_final']); ?></td>
         <td><?php echo $row['quantity']; ?></td>
+        <td><?php echo $row['sold'] ? $row['sold'] : 0; ?></td>
         <td align="center">
           <div class="form-check form-switch form-check-center">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
