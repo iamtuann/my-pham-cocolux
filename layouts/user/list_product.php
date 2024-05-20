@@ -4,8 +4,14 @@
 	$sql_show_hot = "SELECT p.*, pi.path_url, b.name AS brand_name
 					FROM product p
 					JOIN brand b ON p.brand_id = b.id
-					LEFT JOIN product_image pi ON p.id = pi.product_id
-					LIMIT 8 OFFSET 0";
+					LEFT JOIN (
+						SELECT product_id, MIN(id) as min_id
+						FROM product_image
+						GROUP BY product_id
+					) pim ON p.id = pim.product_id
+					LEFT JOIN product_image pi ON pim.min_id = pi.id
+					ORDER BY p.create_date DESC
+					LIMIT 8";
     $query_show_hot = mysqli_query($connect, $sql_show_hot);
 ?>
 
