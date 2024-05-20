@@ -43,7 +43,7 @@
 		session_start();
 		include("config/connect.php");
 		include("layouts/user/header.php");
-		include("views/template.php"); 
+		include("views/template.php");
 		include("layouts/user/footer.php");
 	?>
 </body>

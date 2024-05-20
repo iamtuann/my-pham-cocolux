@@ -4,9 +4,8 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  font-family: "Be Vietnam Pro", sans-serif;
+html, body {
+  font-family: "Be Vietnam Pro", sans-serif !important;
   font-weight: 400;
   color: #000;
 }
