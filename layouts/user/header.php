@@ -5,14 +5,32 @@
  ?>
 <div class="top-header">
     <div class="container">
-        <i class="fal fa-phone-alt"></i>
-        <span class="ms-2">+84 989 382 xxx</span>
+        <div class="header-left">
+            <i class="fal fa-phone-alt"></i>
+            <span class="ms-2">+84 989 382 xxx</span>
+        </div>
+        <div class="header-right">
+
+            <?php echo empty($_SESSION["email"]) ? '<a href="views/login.php" class="log-in">Đăng nhập</a>
+            <a href="views/signin.php" class="sign-in">Đăng ký</a>' : "<div class='information'>Welcome, ". $_SESSION["name"] ." <div class='menu-content menu-infor'>
+            <div class='menu-item'>
+                <a href='?page=info' class='menu-btn'>
+                    Thông tin </a>
+            </div>
+            <div class='menu-item'>
+                <a href='views/login.php?log-out=1' class='menu-btn'>
+                    Đăng xuất </a>
+            </div>
+        </div>
+    </div>" ?>
+
+        </div>
     </div>
 </div>
 <header class="header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center gx-4">
-            <a href="">
+            <a href="?page=home">
                 <img src="assets/images/logo-full-black-cocolux.png" alt="">
             </a>
             <div class="d-flex align-items-center justify-content-end column-gap-4">
