@@ -1,0 +1,7 @@
+.admin-header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}

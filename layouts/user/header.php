@@ -1,4 +1,8 @@
 <?php
+//   $page = "";
+//   if (isset($_GET['page'])) {
+//     $page = $_GET['page'];
+//   }
  $query = "SELECT * FROM category";
  $result = mysqli_query($connect,$query);
 
