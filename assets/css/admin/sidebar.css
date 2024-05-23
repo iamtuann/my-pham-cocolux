@@ -1,0 +1,26 @@
+.sidebar-wrap {
+  width: 260px;
+  border-right: 1px solid #333;
+  background-color: #fff;
+  padding: 12px 0;
+}
+
+.sb-list-nav {
+  padding: 8px 12px;
+}
+.sb-nav-item {
+  border-bottom: 1px solid #ddd;
+  padding: 6px;
+}
+
+.sb-nav-link {
+  padding: 8px 12px;
+  color: #000;
+  text-decoration: none;
+  display: block;
+  border-radius: 6px;
+  background-color: transparent;
+}
+.sb-nav-link:hover {
+  background-color: #eeeeee;
+}

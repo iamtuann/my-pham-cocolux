@@ -11,6 +11,62 @@ html, body {
   min-height: 100vh;
 }
 
-body {
-  display: flex;
+table {
+  width: 100%;
+}
+table, tr, th, td {
+border: 1px solid #000;
+}
+th, td {
+  padding: 8px 12px;
+}
+.form-check-center {
+  width: max-content;
+}
+.add-new-btn {
+  padding: 6px 20px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(0, 113, 188);
+  color: #fff;
+  cursor: pointer;
+}
+.input-field {
+  outline: none;
+  border: 1px solid #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.action-btn {
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+}
+.action-btn.delete-btn {
+  background-color: #ee3535;
+}
+.action-btn.update-btn {
+  background-color: #2ea2f0;
+}
+.form-check-input {
+  cursor: pointer;
+}
+.select-field {
+  outline: none;
+  border: 1px solid #333;
+  padding: 5px 8px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 8px;
 }

@@ -1,0 +1,47 @@
+.wp-brands {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid white;
+    margin-top: 50px;
+}
+
+.title {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.view-all {
+    color: #c73030;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.list-brands {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.brand-name {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.brand-img {
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.wp-brand-item {
+    border: 1px solid rgb(225, 225, 225);
+    padding: 10px;
+}
