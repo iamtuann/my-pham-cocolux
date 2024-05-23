@@ -12,14 +12,14 @@
       include('views/cart.php');
       break;
     case 'san-pham':
-      include('views/product.php');
+      include('layouts/user/detail_product.php');
       break;
     case 'danh-muc':
       include('views/category.php');
       break;
     case 'tim-kiem':
       include('views/category.php');
-      break;      
+      break;
     default:
       require 'views/errors/404.php';
       break;
