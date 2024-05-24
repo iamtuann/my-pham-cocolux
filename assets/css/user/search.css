@@ -240,3 +240,7 @@
   background: #000;
   color: #fff;
 }
+.page-link.disabled {
+  pointer-events: none;
+  opacity: 0;
+}

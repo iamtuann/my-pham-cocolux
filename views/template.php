@@ -12,7 +12,7 @@
       include('views/cart.php');
       break;
     case 'san-pham':
-      include('views/product.php');
+      include('views/detail_product.php');
       break;
     case 'danh-muc':
       include('views/category.php');
@@ -22,7 +22,10 @@
       break;      
     case 'checkout':
       include('views/checkout.php');
-      break;      
+      break;
+    case 'info':
+      include('views/info.php');
+      break;        
     default:
       require 'views/errors/404.php';
       break;

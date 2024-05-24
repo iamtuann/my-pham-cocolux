@@ -4,7 +4,7 @@
     <div class="container pt-5 pb-2">
         <div class="above-footer">
             <div class="logo-cocolux">
-                <a href=""><img class="logo"
+                <a href="/my-pham-cocolux"><img class="logo"
                     src="https://cocolux.com/storage/upload_image/images/logo-full-white-cocolux.png"></a>
                 <div class="introduce">Cocolux là hệ thống phân phối mỹ
                     phẩm chính hãng uy tín và dịch vụ chăm sóc khách
