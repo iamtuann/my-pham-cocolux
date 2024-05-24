@@ -31,7 +31,9 @@
 						<div class="item-content">
 							<div class="price">
 								<div class="price_final"><?= number_format($row['price_final'], 0, ',', '.') . ' VNĐ'  ?></div>
-								<div class="price_original"><?= number_format($row['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+								<?php if ($row['price_original'] != $row['price_final']) : ?>
+									<div class="price_original"><?= number_format($row['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+								<?php endif; ?>
 							</div>
 							<div class="brand"><?= $row['brand_name'] ?></div>
 							<div class="name"><?= $row['name'] ?></div>

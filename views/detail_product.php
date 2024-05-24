@@ -71,7 +71,9 @@
                         </div>
                         <div class="product-price">
                             <div class="price-final"><?= number_format($row_detail['price_final'], 0, ',', '.') . ' VNĐ'  ?></div>
-                            <div class="price-original"><?= number_format($row_detail['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+                            <?php if ($row_detail['price_original'] != $row_detail['price_final']) : ?>
+                                <div class="price-original"><?= number_format($row_detail['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+                            <?php endif; ?>
                         </div>
                         <div class="quantity">
                             <div class="quantity-title">Số lượng:</div>
@@ -163,7 +165,9 @@
                             <div class="item-content">
                                 <div class="price">
                                     <div class="price_final"><?= number_format($row_same_brand['price_final'], 0, ',', '.') . ' VNĐ'  ?></div>
-                                    <div class="price_original"><?= number_format($row_same_brand['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+                                    <?php if ($row_same_brand['price_original'] != $row_same_brand['price_final']) : ?>
+                                        <div class="price_original"><?= number_format($row_same_brand['price_original'], 0, ',', '.') . ' VNĐ'  ?></div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="brand"><?= $row_same_brand['brand_name'] ?></div>
                                 <div class="name"><?= $row_same_brand['name'] ?></div>

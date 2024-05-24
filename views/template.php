@@ -12,7 +12,7 @@
       include('views/cart.php');
       break;
     case 'san-pham':
-      include('layouts/user/detail_product.php');
+      include('views/detail_product.php');
       break;
     case 'danh-muc':
       include('views/category.php');
