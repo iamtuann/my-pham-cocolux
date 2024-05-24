@@ -1,0 +1,132 @@
+.info-header {
+  border-bottom: 1px #e3e3e3 solid;
+}
+.infor-main {
+  margin-top: 24px;
+}
+.infor-main-text {
+  margin: 12px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.infor-main-text label {
+  color: rgba(85, 85, 85, 0.8);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  width: 15%;
+  text-align: right;
+}
+.infor-main-text span.infor-text-sql {
+  width: 85%;
+  margin-left: 24px;
+}
+.container-info {
+  max-width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper-info {
+  width: 70%;
+}
+.sidebar-info {
+  width: 30%;
+}
+.sidebar-list-item .sidebar-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+}
+.sidebar-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* test */
+.container-info-left {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  padding: 12px 48px;
+}
+
+.card-list {
+  padding-left: 0;
+  display: flex;
+}
+
+.card-item {
+  width: 300px;
+  height: 400px;
+  background-color: #242628;
+  margin: 0 24px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.card-item-img {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  transition: 0.25s;
+  margin: 0 auto;
+  transform: translateY(25px);
+  border-radius: 50%;
+  border: 4px solid #f2726a;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-item-img:hover {
+  width: 100%;
+  height: 100%;
+  border-radius: unset;
+  border: unset;
+  transform: unset;
+  transition: 0.25s;
+}
+.card-item-name {
+  color: #fff;
+  margin-top: 48px;
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-item-duty {
+  color: #f2726a;
+  font-weight: bold;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.social-media-list {
+  display: flex;
+  justify-content: center;
+}
+
+.social-media-item i {
+  font-size: 22px;
+  color: #fff;
+  margin: 20px;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+}
+.card-item-contact {
+  color: #fff;
+  border: 1px solid #f2726a;
+  padding: 12px 18px;
+  border-radius: 12px;
+}

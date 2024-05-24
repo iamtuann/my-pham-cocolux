@@ -11,7 +11,24 @@
 .header {
   padding: 10px 0;
 }
+.top-header .container {
+  display: flex;
+  justify-content: space-between;
+}
 
+.header-right .log-in,
+.header-right .sign-in,
+.header-right .log-out {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+}
+.header-right .log-in:hover,
+.header-right .sign-in:hover,
+.header-right .log-out:hover {
+  text-decoration: none;
+  color: red;
+}
 .search-input {
   width: 500px;
   height: 40px;
@@ -157,4 +174,23 @@
   height: 36.4px;
   text-decoration: none;
   color: inherit;
+}
+.information {
+  position: relative;
+  cursor: pointer;
+}
+
+.information .menu-infor {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 30px;
+}
+.menu-infor .menu-item .menu-btn {
+  background-color: rgb(128, 142, 128);
+  width: 150px;
+  border-bottom: 1px solid #272727;
+}
+.information:hover .menu-infor {
+  display: block;
 }
