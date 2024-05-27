@@ -12,7 +12,7 @@
       include('views/cart.php');
       break;
     case 'san-pham':
-      include('views/product.php');
+      include('views/detail_product.php');
       break;
     case 'danh-muc':
       include('views/category.php');
@@ -20,12 +20,9 @@
     case 'tim-kiem':
       include('views/category.php');
       break; 
-    case 'info':
-      include('views/info.php');
-      break;   
-      case 'change-password':
-        include('views/change-password.php');
-        break;              
+      case 'info':
+        include('views/info.php');
+        break;        
     default:
       require 'views/errors/404.php';
       break;

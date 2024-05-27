@@ -1,0 +1,231 @@
+.wp-detail-product {
+    background-color: rgb(239, 239, 239);
+    padding-bottom: 35px;
+}
+
+.nav-detail-product-child {
+    display: flex;
+    padding: 10px;
+}
+
+.home-page-link {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.slash {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-detail-product-child a {
+    text-decoration: none;
+    color: black;
+}
+
+.detail-product-hr {
+    height: 2px;
+    width: 85%;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+}
+
+.product {
+    background-color: white;
+    padding: 25px;
+    display: flex;
+    gap: 50px;
+    border-radius: 10px;
+}
+
+.product-img img {
+    width: 420px;
+    height: 420px;
+}
+
+.product-infor {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: start;
+    align-items: start;
+}
+
+.product-brand {
+    color: #c73030;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.product-name {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.feedback {
+    display: flex;
+    align-items: center;
+}
+
+.slash-straight {
+    margin: 0 10px;
+}
+
+.product-price {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.price-original {
+    color: #707070;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.price-final {
+    color: #C73030;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.quantity {
+    display: flex;
+    gap: 20px;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    margin: 0 5px;
+}
+
+.add-to-cart {
+    margin-top: 50px;
+    background-color: black;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+}
+
+
+.information, .description, .uses, .instruction, .the-same-brand {
+    margin-top: 35px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.information-big-title, .description-title, .uses-title, .instruction-title, .the-same-brand-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.information-row {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dfdede;
+    border-bottom: none;
+}
+
+.custom-border {
+    border: 1px solid #dfdede;
+}
+
+.information-title {
+    font-size: 16px;
+    font-weight: 600;
+    width: 300px;
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+}
+
+.information-content {
+    font-size: 16px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.list-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.wp-product-item {
+    border: 1px solid #eaeaea;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.wp-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.img {
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.price {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.price_final {
+    color: #C73030;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.price_original {
+    color: #707070;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.brand {
+    color: #000000;
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.name {
+    color: #000000;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: left;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

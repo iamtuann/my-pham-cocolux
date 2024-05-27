@@ -1,13 +1,11 @@
 <?php
-ob_start();
+//   $page = "";
+//   if (isset($_GET['page'])) {
+//     $page = $_GET['page'];
+//   }
  $query = "SELECT * FROM category";
  $result = mysqli_query($connect,$query);
- if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["keyword"])) {
-    header('Location:?page=tim-kiem&key='.$_SESSION["tukhoa"]);
- } 
- if($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST["keyword"])) {
-    header('Location:http://localhost/my-pham-cocolux/');
- } 
+
  ?>
 <div class="top-header">
     <div class="container">
@@ -16,8 +14,9 @@ ob_start();
             <span class="ms-2">+84 989 382 xxx</span>
         </div>
         <div class="header-right">
-            <?php echo empty($_SESSION["email"]) ? '<a href="login.php" class="log-in">Đăng nhập</a>
-            <a href="signin.php" class="sign-in">Đăng ký</a>' : "<div class='information'>Welcome, ". $_SESSION["name"] ." <div class='menu-content menu-infor'>
+
+            <?php echo empty($_SESSION["email"]) ? '<a href="views/login.php" class="log-in">Đăng nhập</a>
+            <a href="views/signin.php" class="sign-in">Đăng ký</a>' : "<div class='information'>Welcome, ". $_SESSION["name"] ." <div class='menu-content menu-infor'>
             <div class='menu-item'>
                 <a href='?page=info' class='menu-btn'>
                     Thông tin </a>
@@ -45,7 +44,7 @@ ob_start();
                         <i class="far fa-search"></i>
                     </button>
                 </form>
-                <a class="header-action" href="/cart">
+                <a class="header-action" href="?page=gio-hang">
                     <div class="position-relative">
                         <i class="fal fa-shopping-cart"></i>
                         <span class="count">1</span>
@@ -67,9 +66,7 @@ ob_start();
                 <a href="" class="nav-link">Danh mục sản phẩm</a>
                 <div class="menu-content">
                     <?php 
-                      $i = 0 ;
                       while($row=mysqli_fetch_array($result)) {
-                      $i++;
                       ?>
                     <div class="menu-item">
                         <a href="?page=danh-muc&id=<?php echo $row["id"]?>" class="menu-btn">
