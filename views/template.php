@@ -19,10 +19,16 @@
       break;
     case 'tim-kiem':
       include('views/category.php');
-      break; 
-      case 'info':
-        include('views/info.php');
-        break;        
+      break;      
+    case 'checkout':
+      include('views/checkout.php');
+      break;
+    case 'checkout-success':
+      include('views/checkout_success.php');
+      break;
+    case 'info':
+      include('views/info.php');
+      break;        
     default:
       require 'views/errors/404.php';
       break;
