@@ -60,7 +60,11 @@
     endforeach;
     $stmtOrderItem->close();
     $stmtCart->close();
-    header('Location: ?page=checkout');
+    if ($payment == 0) {
+      header('Location: ?page=checkout-success&order_id='.$orderId);
+    } elseif ($payment==1) {
+      header('Location: ?page=home');
+    }
   }
 ?>
 

@@ -23,6 +23,9 @@
     case 'checkout':
       include('views/checkout.php');
       break;
+    case 'checkout-success':
+      include('views/checkout_success.php');
+      break;
     case 'info':
       include('views/info.php');
       break;        
