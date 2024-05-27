@@ -12,11 +12,18 @@
   LEFT JOIN product_image pi ON pim.min_id = pi.id
   WHERE u.id = ".$user_id;
   $products = mysqli_query($connect, $sql);
+  $product_array = [];
   $total_price_original=0;
   $total_price_final=0;
 
   if (mysqli_num_rows($products) <= 0) {
     header('Location: ?page=gio-hang');
+  } else {
+    while ($row = mysqli_fetch_assoc($products)) {
+      $total_price_final+= ($row['price_final'] * $row['quantity']);
+      $total_price_original+= ($row['price_original'] * $row['quantity']);
+      $product_array[] = $row;
+    }
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order-btn'])) {
@@ -33,14 +40,27 @@
     $orderId = $stmt->insert_id;
     $stmt->close();
 
-    $stmt = $connect->prepare("INSERT INTO order_item (product_id, price_original, price_final, quantity, order_id) VALUES (?, ?, ?, ?, ?)");
-    while ($row = mysqli_fetch_assoc($products)) {
-      $productId = $row['product_id'];
-      $stmt->bind_param("iddii", $productId, $row['price_original'], $row['price_final'], $row['quantity'], $row['orderId']);
-      $stmt->execute();
+    $stmtOrderItem = $connect->prepare("INSERT INTO `order_item` (product_id, price_original, price_final, quantity, order_id) VALUES (?, ?, ?, ?, ?)");
+    if ($stmtOrderItem === false) {
+      die("Chuẩn bị câu lệnh order_item thất bại: " . $connect->error);
     }
-    $stmt->close();
-    header('Location: ?page=home');
+
+    $stmtCart = $connect->prepare("DELETE FROM `cart_item` WHERE `product_id` = ? AND `user_id` = ?");
+    if ($stmtCart === false) {
+      die("Chuẩn bị câu lệnh order_item thất bại: " . $connect->error);
+    }
+
+    foreach ($product_array as $product) :
+      $productId = $product['product_id'];
+      $stmtOrderItem->bind_param("iddii", $productId, $product['price_original'], $product['price_final'], $product['quantity'], $orderId);
+      $stmtOrderItem->execute();
+
+      $stmtCart->bind_param("ii", $productId, $user_id);
+      $stmtCart->execute();
+    endforeach;
+    $stmtOrderItem->close();
+    $stmtCart->close();
+    header('Location: ?page=checkout');
   }
 ?>
 
@@ -119,25 +139,23 @@
           <div class="list-product-checkout mb-5">
             <?php
               if ($result = mysqli_num_rows($products) > 0){
-                while ($row=mysqli_fetch_assoc($products)){
+                foreach ($product_array as $product) :
             ?>
-            <a href="<?php echo '?page=san-pham&id=' . $row['product_id'] ?>" class="checkout-item-product">
-              <img src="<?php echo $row['image'] ?>" alt="<?php echo $row['name'] ?>">
+            <a href="<?php echo '?page=san-pham&id=' . $product['product_id'] ?>" class="checkout-item-product">
+              <img src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>">
               <div class="checkout-item-info">
-                <p class="checkout-item-title mb-0"><?php echo $row['name'] ?></p>
+                <p class="checkout-item-title mb-0"><?php echo $product['name'] ?></p>
                 <div class="checkout-item-quantity mb-0">
-                  SL: <span class="fw-bold"><?php echo $row['quantity'] ?></span>
+                  SL: <span class="fw-bold"><?php echo $product['quantity'] ?></span>
                 </div>
               </div>
               <div class="fw-bold">
-                <div class="checkout-price-final"><?= number_format($row['price_final'], 0, ',', '.') . 'đ' ?></div>
-                <div class="checkout-price-original"><?= number_format($row['price_original'], 0, ',', '.') . 'đ' ?></div>
+                <div class="checkout-price-final"><?= number_format($product['price_final'], 0, ',', '.') . 'đ' ?></div>
+                <div class="checkout-price-original"><?= number_format($product['price_original'], 0, ',', '.') . 'đ' ?></div>
               </div>
             </a>
             <?php
-                  $total_price_final+= ($row['price_final'] * $row['quantity']);
-                  $total_price_original+= ($row['price_original'] * $row['quantity']);
-                }
+              endforeach;
               }
             ?>
           </div>
