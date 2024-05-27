@@ -2,9 +2,12 @@
 ob_start();
  $query = "SELECT * FROM category";
  $result = mysqli_query($connect,$query);
- if($_SERVER['REQUEST_METHOD'] == 'POST') {
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST["keyword"])) {
     header('Location:?page=tim-kiem&key='.$_SESSION["tukhoa"]);
- }
+ } 
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST["keyword"])) {
+    header('Location:http://localhost/my-pham-cocolux/');
+ } 
  ?>
 <div class="top-header">
     <div class="container">
