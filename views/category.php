@@ -239,17 +239,25 @@
                                 if ($page != "all-product") { ?>
                                 <span class="card-item card-filter active">
                                     <?php 
-                                    if (isset($_GET["id"])) {
-                                        echo "Danh mục: ";
-                                        echo $result_category_search["name"];
-                                    } else {
-                                        echo "Từ khóa: ";
-                                        echo $tukhoa;
-                                    }
+                                        if (isset($_GET["id"])) {
+                                            echo "Danh mục: ";
+                                            echo $result_category_search["name"];
+                                        } else {
+                                            echo "Từ khóa: ";
+                                            echo $tukhoa;
+                                        }
+                                        ?>
+                                </span>
+                                <?php } ?>
+                                <?php if ($page != "all-product" && isset($_GET["brand-id"])) { ?>
+                                <span class="card-item card-filter active">
+                                    <?php
+                                    echo "Thương hiệu: ";
+                                    echo $result_brand_search["name"];
                                     ?>
                                 </span>
                                 <?php } ?>
-                                <?php echo isset($_GET["brand-id"])  ? '<span class="card-item card-filter active"> Thương hiệu: '.($result_brand_search["name"])."</span>":"" ?>
+
                             </div>
                         </div>
                         <div class="card-group">
