@@ -34,7 +34,7 @@ header('Expires: 0'); // Proxies.
             $link = "?page=$page&key=$tukhoa";
             $linkPage = "?page=$page&key=$tukhoa". ($currentPage > 1 ? "&current-page=".$currentPage : "");
         }
-        $total_pages = 0;
+        $total_pages = 0;     
         // check get sản phẩm theo danh mục
         if(isset($_GET["id"])) {
             $dm_id = $_GET["id"];
