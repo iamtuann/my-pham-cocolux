@@ -85,7 +85,7 @@
                 <a href="" class="nav-link">Khuyến mại</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Thương hiệu</a>
+                <a href="?page=thuong-hieu" class="nav-link">Thương hiệu</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link">Giới thiệu</a>

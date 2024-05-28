@@ -22,7 +22,10 @@
       break; 
       case 'info':
         include('views/info.php');
-        break;        
+        break;
+      case 'thuong-hieu':
+        include('views/brand.php');
+        break;
     default:
       require 'views/errors/404.php';
       break;
