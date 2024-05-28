@@ -1,4 +1,5 @@
 .info-header {
+  text-align: center;
   border-bottom: 1px #e3e3e3 solid;
 }
 .infor-main {
@@ -24,10 +25,10 @@
   max-width: 100%;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .wrapper-info {
-  width: 70%;
+  width: 100%;
 }
 .sidebar-info {
   width: 30%;

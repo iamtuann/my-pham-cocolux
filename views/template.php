@@ -19,6 +19,12 @@
       break;
     case 'tim-kiem':
       include('views/category.php');
+      break; 
+    case 'info':
+      include('views/info.php');
+      break;  
+    case 'change-password':
+    include('views/change-password.php');           
       break;      
     case 'checkout':
       include('views/checkout.php');

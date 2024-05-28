@@ -1,4 +1,7 @@
 <?php 
+header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
+header('Pragma: no-cache'); // HTTP 1.0.
+header('Expires: 0'); // Proxies.
     function sortList() {
         if(isset($_GET["sort"])) {
             switch ($_GET["sort"]) {
@@ -20,7 +23,7 @@
     return "" ;
     }
         $currentPage = isset($_GET["current-page"]) ? $_GET["current-page"] : 1 ;
-        $limit = 1 ;
+        $limit = 15 ;
         $offset = ($currentPage - 1) * $limit ;
         $page = $_GET['page'];
         $row_count = 0;
