@@ -1,7 +1,7 @@
 <?php 
-header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
-header('Pragma: no-cache'); // HTTP 1.0.
-header('Expires: 0'); // Proxies.
+    header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
+    header('Pragma: no-cache'); // HTTP 1.0.
+    header('Expires: 0'); // Proxies.
     function sortList() {
         if(isset($_GET["sort"])) {
             switch ($_GET["sort"]) {
@@ -34,7 +34,31 @@ header('Expires: 0'); // Proxies.
             $link = "?page=$page&key=$tukhoa";
             $linkPage = "?page=$page&key=$tukhoa". ($currentPage > 1 ? "&current-page=".$currentPage : "");
         }
-        $total_pages = 0;     
+        $total_pages = 0;  
+    if($page == 'all-product') {
+        $link = "?page=$page";
+        $linkPage = "?page=$page". ($currentPage > 1 ? "&current-page=".$currentPage : "");
+        $total_pages_sql = "SELECT COUNT(*)
+            FROM product group by product.id" ;
+        $result_total = mysqli_query($connect, $total_pages_sql);
+        $total_rows = mysqli_num_rows($result_total);
+        $total_pages = ceil($total_rows / $limit) ;    
+        $query = "SELECT * FROM (
+            SELECT product.*,product_image.path_url,brand.name as brand_name
+            FROM product inner join brand on brand.id = product.brand_id inner join  product_image on product.id = product_image.product_id
+            GROUP BY id
+            LIMIT ? OFFSET  ?
+        ) AS sub_query ";
+        $sort = sortList();
+        $query.=$sort;
+        $statement_all_product = mysqli_prepare($connect, $query);
+        mysqli_stmt_bind_param($statement_all_product, "ii", $limit,$offset);
+        mysqli_stmt_execute($statement_all_product);
+        $result_search = mysqli_stmt_get_result($statement_all_product);
+        $row_count = mysqli_num_rows($result_search);
+        $brands = "SELECT brand.id, brand.name,count(product.brand_id) as brand_num FROM brand left join product on brand.id = product.brand_id group by brand.id,brand.name";
+        $result_brand = mysqli_query($connect,$brands);
+    }       
         // check get sản phẩm theo danh mục
         if(isset($_GET["id"])) {
             $dm_id = $_GET["id"];
@@ -111,11 +135,13 @@ header('Expires: 0'); // Proxies.
      // tìm theo thương hiệu
      if(isset($_GET["brand-id"])) {
         $brand_id = $_GET["brand-id"];
-        $link = "?page=$page&key=$tukhoa&brand-id=$brand_id" ;
-        $linkPage = "?page=$page&key=$tukhoa&brand-id=$brand_id". ($currentPage > 1 ? "&current-page=".$currentPage : "") ;
+        if($page == "all-product") $url = "";
+        else $url = "&key=$tukhoa";
+        $link = "?page=$page".$url."&brand-id=$brand_id" ;
+        $linkPage = "?page=$page".$url."&brand-id=$brand_id". ($currentPage > 1 ? "&current-page=".$currentPage : "") ;
         $total_pages_sql = "SELECT COUNT(*)
         FROM product inner join brand on brand.id = product.brand_id
-        WHERE product.name LIKE '%".$tukhoa."%' and brand.id = ?  group by product.id " ;
+        WHERE " .($page == "all-product" ? "":" product.name LIKE '%".$tukhoa."%' and ").  " brand.id = ?  group by product.id " ;
         $statement_page = mysqli_prepare($connect, $total_pages_sql);
         mysqli_stmt_bind_param($statement_page, "i",$brand_id );
         mysqli_stmt_execute($statement_page);
@@ -129,20 +155,24 @@ header('Expires: 0'); // Proxies.
         $result_brand_search = mysqli_stmt_get_result($statement_brand);
         $result_brand_search = mysqli_fetch_array($result_brand_search);
         $sql_pro = "SELECT * FROM (
-            SELECT product.*, product_image.path_url ,brand.name as brand_name
-                   FROM product 
+        SELECT product.*, product_image.path_url ,brand.name as brand_name
+        FROM product 
         right JOIN product_image ON product.id = product_image.product_id 
         right JOIN brand ON brand.id = product.brand_id 
-        WHERE product.name LIKE CONCAT('%', ?, '%')  
-        AND brand.id = ? group by product.id limit ? offset ? ) as sub_query";
+        WHERE " .($page == "all-product" ? "":"product.name LIKE CONCAT('%', ?, '%')  
+        AND ").  "brand.id = ? group by product.id limit ? offset ? ) as sub_query";
         $sort = sortList();
         $sql_pro.=$sort;
         $statement3 = mysqli_prepare($connect, $sql_pro); // Sử dụng biến $sql_pro
-        mysqli_stmt_bind_param($statement3, "siii", $tukhoa, $_GET["brand-id"],$limit,$offset); 
+        if($page == "all-product") {
+            mysqli_stmt_bind_param($statement3, "iii", $_GET["brand-id"],$limit,$offset); 
+        } else {
+             mysqli_stmt_bind_param($statement3, "siii", $tukhoa, $_GET["brand-id"],$limit,$offset); 
+        }
         mysqli_stmt_execute($statement3);
         $result_search = mysqli_stmt_get_result($statement3);
         $row_count = mysqli_num_rows($result_search);
-        $brands = "SELECT brand.id, brand.name,count(product.brand_id) as brand_num FROM brand left join product on brand.id = product.brand_id and product.name LIKE '%".$tukhoa."%' group by brand.id,brand.name";
+        $brands = "SELECT brand.id, brand.name,count(product.brand_id) as brand_num FROM brand left join product on brand.id = product.brand_id " .($page == "all-product" ? "":" and product.name LIKE '%".$tukhoa."%' "). " group by brand.id,brand.name";
         $result_brand = mysqli_query($connect,$brands);
         $row_count = mysqli_num_rows($result_search);
      }
@@ -172,12 +202,17 @@ header('Expires: 0'); // Proxies.
                             </div>
                         </div>
                         <?php 
-                        if (isset($_POST["keyword"]) || isset($_GET["brand-id"]) || isset($_GET["key"])) {
+                        if (isset($_POST["keyword"]) || isset($_GET["brand-id"]) || isset($_GET["key"]) || $page == "all-product") {
+                             if($page == "all-product" ) {
+                                $url = "";
+                            } elseif(isset($_POST["keyword"]) || isset($_GET["brand-id"]) || isset($_GET["key"])) {
+                                $url = '&key='.$tukhoa;
+                            }
                             echo '<div class="filter-group">
                             <div class="filter-group-title">Thương hiệu</div>
                             <div class="filter-group-items product_attribute_thuong_hieu">';
                                 while ($row3 = mysqli_fetch_array($result_brand)) {
-                                echo '<a href="?page='.$page.'&key='.$tukhoa.'&brand-id='.$row3["id"] .'" class="filter-item">
+                                echo '<a href="?page='.$page.$url.'&brand-id='.$row3["id"] .'" class="filter-item">
                                 <input type="hidden" name="product_attribute_thuong_hieu" value="">
                                 ' . $row3["name"] . '
                                 <span>(' . $row3["brand_num"] . ')</span>
@@ -186,7 +221,7 @@ header('Expires: 0'); // Proxies.
                             echo '   </div>
                             </div>';
                             }
-                    ?>
+                        ?>
 
                     </div>
                 </div>
@@ -200,12 +235,21 @@ header('Expires: 0'); // Proxies.
                         <div class="card-group">
                             <div class="card-title">Lọc theo</div>
                             <div class="card-items">
+                                <?php
+                                if ($page != "all-product") { ?>
                                 <span class="card-item card-filter active">
-                                    <?php echo isset($_GET["id"]) ? "Danh mục: " : "Từ khóa: " ?>
-
-                                    <?php echo isset($_GET["id"]) ? $result_category_search["name"] : $tukhoa ?>
+                                    <?php 
+                                    if (isset($_GET["id"])) {
+                                        echo "Danh mục: ";
+                                        echo $result_category_search["name"];
+                                    } else {
+                                        echo "Từ khóa: ";
+                                        echo $tukhoa;
+                                    }
+                                    ?>
                                 </span>
-                                <?php echo isset($_GET["brand-id"]) ? '<span class="card-item card-filter active"> Thương hiệu: '.($result_brand_search["name"])."</span>":"" ?>
+                                <?php } ?>
+                                <?php echo isset($_GET["brand-id"])  ? '<span class="card-item card-filter active"> Thương hiệu: '.($result_brand_search["name"])."</span>":"" ?>
                             </div>
                         </div>
                         <div class="card-group">
@@ -241,7 +285,7 @@ header('Expires: 0'); // Proxies.
                     </div>
                     <div class="layout-list-items mb-4">
                         <?php 
-                          if(isset($_GET["id"]) || isset($_POST["keyword"]) || isset($_GET["key"]) || $_GET["brand-id"]) {
+                          if(isset($_GET["id"]) || isset($_POST["keyword"]) || isset($_GET["key"]) ||  isset($_GET["brand-id"]) || $page =='all-product') {
                                 while($row2=mysqli_fetch_array($result_search)) {
                                 ?>
                         <a href="?page=san-pham&id=<?=$row2["id"] ?>" class="product-template">

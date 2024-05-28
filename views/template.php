@@ -20,6 +20,12 @@
     case 'tim-kiem':
       include('views/category.php');
       break; 
+    case 'all-product':
+      include('views/category.php');
+      break;   
+    case "thuong-hieu":
+      include("views/brand.php");
+      break;  
     case 'info':
       include('views/info.php');
       break;  
