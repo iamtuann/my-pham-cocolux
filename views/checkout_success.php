@@ -6,8 +6,11 @@
     header('Location: ?page=home');
   }
 
-  $sql="SELECT * FROM `order WHERE id = " . $order_id;
+  $sql="SELECT * FROM `order` WHERE id = '$order_id' LIMIT 1";
   $order = mysqli_query($connect, $sql);
+  if (mysqli_num_rows($order) <= 0) {
+    header('Location: ?page=home');
+  }
 ?>
 <style>
   .success-wrap {
