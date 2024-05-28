@@ -9,7 +9,6 @@
             echo '<script>alert("Mật khẩu hiện tại không đúng")</script>';
         }else if($currentPassword == $newPassword) {
             echo '<script>alert("Vui lòng nhập lại mật khẩu mới")</script>';
-
         }
          else {
             $update = "UPDATE user
@@ -18,9 +17,9 @@
             $resultUpdate = mysqli_query($connect,$update);
             if($resultUpdate) {
                 $_SESSION["isChangePassword"] = "success";
-                header("Location: login.php");
+                header("Location:login.php");
                 exit();
-                echo '<script>alert("Cập nhật mật khẩu thành công")</script>';
+           
 
             }
         }

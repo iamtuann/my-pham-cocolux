@@ -23,7 +23,7 @@ header('Expires: 0'); // Proxies.
     return "" ;
     }
         $currentPage = isset($_GET["current-page"]) ? $_GET["current-page"] : 1 ;
-        $limit = 1 ;
+        $limit = 15 ;
         $offset = ($currentPage - 1) * $limit ;
         $page = $_GET['page'];
         $row_count = 0;
@@ -83,7 +83,6 @@ header('Expires: 0'); // Proxies.
         $_SESSION["tukhoa"] = $tukhoa;
         $link = "?page=$page&key=$tukhoa" ;
         $linkPage =  "?page=$page&key=$tukhoa". ($currentPage > 1 ? "&current-page=".$currentPage : "") ;
-        
       }
      // lọc kết quả tìm kiếm
     if(isset($_GET["key"]) ) {

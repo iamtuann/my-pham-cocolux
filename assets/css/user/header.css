@@ -175,12 +175,12 @@
   text-decoration: none;
   color: inherit;
 }
-.information {
+.header-information {
   position: relative;
   cursor: pointer;
 }
 
-.information .menu-infor {
+.header-information .menu-infor {
   display: none;
   position: absolute;
   top: 100%;
@@ -191,6 +191,6 @@
   width: 150px;
   border-bottom: 1px solid #272727;
 }
-.information:hover .menu-infor {
+.header-information:hover .menu-infor {
   display: block;
 }

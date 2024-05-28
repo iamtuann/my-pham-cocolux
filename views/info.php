@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="./assets/css/user/info.css">
-
-
 <?php
             if(isset($_SESSION['user_id'])){
                 // echo 'Xin chào: '.'<span style="color:red">'.$_SESSION['dangky'].'</span>';
