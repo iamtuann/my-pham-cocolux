@@ -63,7 +63,7 @@
     if ($payment == 0) {
       header('Location: ?page=checkout-success&order_id='.$orderId);
     } elseif ($payment==1) {
-      header('Location: ?page=home');
+      header('Location: ?page=checkout-payment&order_id='.$orderId);
     }
   }
 ?>
@@ -81,36 +81,36 @@
         <div class="form-detail mb-4 p-3 bg-white">
           <div class="mb-3">
             <label class="mb-1">Họ và tên <span class="text-danger">*</span></label>
-            <input type="text" name="name" class="form-control" require>
+            <input type="text" name="name" class="form-control" required>
           </div>
           <div class="mb-3">
             <label class="mb-1">Số điện thoại khi nhận hàng <span class="text-danger">*</span></label>
-            <input type="text" name="phone" class="form-control" require>
+            <input type="text" name="phone" class="form-control" required>
           </div>
           <div class="mb-3">
             <label class="mb-1">Tỉnh Thành <span class="text-danger">*</span></label>
-            <select name="city" class="form-control" id="cities" require onchange="getDistricts(this.value)">
-              <option value="0" selected hidden disable>Chọn Tỉnh/ Thành phố</option>
+            <select name="city" class="form-control" id="cities" required onchange="getDistricts(this.value)">
+              <option value="" selected hidden disable>Chọn Tỉnh/ Thành phố</option>
             </select>
             <input type="text" name="city_txt" id="city_txt" hidden>
           </div>
           <div class="mb-3">
             <label class="mb-1">Quận Huyện <span class="text-danger">*</span></label>
-            <select name="district" class="form-control" id="districts" require onchange="getWards(this.value)">
-              <option value="0" selected hidden disable>Chọn Quận/ Huyện</option>
+            <select name="district" class="form-control" id="districts" required onchange="getWards(this.value)">
+              <option value="" selected hidden disable>Chọn Quận/ Huyện</option>
             </select>
             <input type="text" name="district_txt" id="district_txt" hidden>
           </div>
           <div class="mb-3">
             <label class="mb-1">Phường Xã <span class="text-danger">*</span></label>
-            <select name="ward" class="form-control" id="wards" require onchange="changeWard()">
-              <option value="0" selected hidden disable>Chọn Phường/ Xã</option>
+            <select name="ward" class="form-control" id="wards" required onchange="changeWard()">
+              <option value="" selected hidden disable>Chọn Phường/ Xã</option>
             </select>
             <input type="text" name="ward_txt" id="ward_txt" hidden>
           </div>
           <div class="mb-3">
             <label class="mb-1">Địa chỉ chi tiết <span class="text-danger">*</span></label>
-            <input type="text" name="detail_address" class="form-control" require>
+            <input type="text" name="detail_address" class="form-control" required>
           </div>
           <div class="mb-3">
             <label class="mb-1">Ghi chú</label>
@@ -219,8 +219,8 @@
           })
           .then(data => {
             console.log(data);
-              districtSelect.innerHTML = '<option value="0" selected hidden disable>Chọn Quận/ Huyện</option>';
-              wardSelect.innerHTML = '<option value="0" selected hidden disable>Chọn Phường/ Xã</option>';
+              districtSelect.innerHTML = '<option value="" selected hidden disable>Chọn Quận/ Huyện</option>';
+              wardSelect.innerHTML = '<option value="" selected hidden disable>Chọn Phường/ Xã</option>';
               data?.data.forEach(dis => {
                   const option = document.createElement('option');
                   option.value = dis.id;
@@ -247,7 +247,7 @@
           })
           .then(data => {
               const wardSelect = document.getElementById('wards');
-              wardSelect.innerHTML = '<option value="0" selected hidden disable>Chọn Phường/ Xã</option>';
+              wardSelect.innerHTML = '<option value="" selected hidden disable>Chọn Phường/ Xã</option>';
               data?.data.forEach(ward => {
                   const option = document.createElement('option');
                   option.value = ward.id;
