@@ -8,7 +8,7 @@
 	<div class="wp-brands">
 		<div class="d-flex justify-content-between">
 			<h3 class="title">THƯƠNG HIỆU NỔI BẬT</h3>
-			<a class="view-all" href="?page=brands">XEM TẤT CẢ</a>
+			<a class="view-all" href="?page=thuong-hieu">XEM TẤT CẢ</a>
 		</div>
 		<div class="list-brands">
 			<?php
