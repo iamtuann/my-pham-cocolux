@@ -43,7 +43,9 @@
 		session_start();
 		include("config/connect.php");
 		include("layouts/user/header.php");
-		include("views/template.php");
+		echo '<div class="main-content">';
+            include("views/template.php");
+        echo '</div>';
 		include("layouts/user/footer.php");
 	?>
 </body>

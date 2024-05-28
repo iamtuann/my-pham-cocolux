@@ -1,10 +1,18 @@
 <?php
-    include("../config/connect.php");
+    include("config/connect.php");
     session_start();
+    ob_start();
     if(isset($_GET["log-out"])) {
-        $_SESSION['email'] = null;
-        $_SESSION['user_id']= null;
-        $_SESSION['name']= null;
+        unset($_SESSION['email']) ;
+        unset($_SESSION['user_id']);
+        unset($_SESSION['name']);
+    }
+    if (isset($_SESSION["isSign-in"]) && $_SESSION["isSign-in"] == "success") {
+        unset($_SESSION["isSign-in"]);
+        echo '<script>alert("Đăng ký thành công")</script>';
+    } else if (isset($_SESSION["isChangePassword"]) && $_SESSION["isChangePassword"] == "success") {
+        unset($_SESSION["isChangePassword"]);
+        echo '<script>alert("Thay đổi mật khẩu thành công")</script>';
     }
 	if(isset($_POST['dangnhap'])){
 		$email = $_POST['email'];
@@ -18,13 +26,13 @@
                 $_SESSION['email'] = $row_data['email'];
                 $_SESSION['user_id']= $row_data['id'];
                 $_SESSION['name']= $row_data['last_name'];
-                header("Location:../index.php");
+                header("Location:index.php");
             } elseif($row_data["role_id"] == 1) {
-                header("Location:../admin/index.php");
+                header("Location:admin/index.php");
             }
 		}
         else{
-			$message = "Tài khoản mật khẩu không đúng";
+			$message = "Tài khoản hoặc mật khẩu không đúng";
             echo "<script type='text/javascript'>alert('$message');</script>";
         }
 	} 
@@ -141,7 +149,7 @@
 
 
     .right {
-        background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%), url(https://luxshopping.vn/Uploads/UserFiles/images/banner%20dong%20ho%20frederique%20constaint.png);
+        background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%), url(https://scontent.fhan5-1.fna.fbcdn.net/v/t39.30808-6/441898899_852103643621047_7500792948689136637_n.jpg?stp=dst-jpg_s960x960&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHc-X-BCrZNiXK68Z9vjdiQdhYmr9qtSzp2Fiav2q1LOrEy62irX-weT6_oRKqbXeJOLU41Nyo3x5pIb1OOL8ex&_nc_ohc=dOR_owzXorcQ7kNvgFiOYiD&_nc_ht=scontent.fhan5-1.fna&oh=00_AYBliLLkcJrc0zNkCUqBYi3ny4POXx97ImvLS_G4NLurbQ&oe=66553214);
         color: #fff;
         position: relative;
     }
@@ -191,7 +199,7 @@
         <div class="login_box">
             <div class="left">
                 <div class="top_link"><a href="http://localhost/my-pham-cocolux/"><img
-                            src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
+                            src="https://scontent.fhan5-1.fna.fbcdn.net/v/t39.30808-6/441898899_852103643621047_7500792948689136637_n.jpg?stp=dst-jpg_s960x960&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHc-X-BCrZNiXK68Z9vjdiQdhYmr9qtSzp2Fiav2q1LOrEy62irX-weT6_oRKqbXeJOLU41Nyo3x5pIb1OOL8ex&_nc_ohc=dOR_owzXorcQ7kNvgFiOYiD&_nc_ht=scontent.fhan5-1.fna&oh=00_AYBliLLkcJrc0zNkCUqBYi3ny4POXx97ImvLS_G4NLurbQ&oe=66553214"
                             alt="">Về trang chủ</a></div>
                 <div class="contact">
                     <form action="" method="POST">
@@ -204,11 +212,11 @@
             </div>
             <div class="right">
                 <div class="right-text">
-                    <h2>Đồng hồ LUXURY</h2>
-                    <h5>ĐẲNG CẤP 5 SAO</h5>
+                    <h2>Mỹ phẩm COCOLUX</h2>
+                    <h5>THƯƠNG HIỆU SỐ 1 VN</h5>
                 </div>
                 <div class="right-inductor"><img
-                        src="https://lh3.googleusercontent.com/fife/ABSRlIoGiXn2r0SBm7bjFHea6iCUOyY0N2SrvhNUT-orJfyGNRSMO2vfqar3R-xs5Z4xbeqYwrEMq2FXKGXm-l_H6QAlwCBk9uceKBfG-FjacfftM0WM_aoUC_oxRSXXYspQE3tCMHGvMBlb2K1NAdU6qWv3VAQAPdCo8VwTgdnyWv08CmeZ8hX_6Ty8FzetXYKnfXb0CTEFQOVF4p3R58LksVUd73FU6564OsrJt918LPEwqIPAPQ4dMgiH73sgLXnDndUDCdLSDHMSirr4uUaqbiWQq-X1SNdkh-3jzjhW4keeNt1TgQHSrzW3maYO3ryueQzYoMEhts8MP8HH5gs2NkCar9cr_guunglU7Zqaede4cLFhsCZWBLVHY4cKHgk8SzfH_0Rn3St2AQen9MaiT38L5QXsaq6zFMuGiT8M2Md50eS0JdRTdlWLJApbgAUqI3zltUXce-MaCrDtp_UiI6x3IR4fEZiCo0XDyoAesFjXZg9cIuSsLTiKkSAGzzledJU3crgSHjAIycQN2PH2_dBIa3ibAJLphqq6zLh0qiQn_dHh83ru2y7MgxRU85ithgjdIk3PgplREbW9_PLv5j9juYc1WXFNW9ML80UlTaC9D2rP3i80zESJJY56faKsA5GVCIFiUtc3EewSM_C0bkJSMiobIWiXFz7pMcadgZlweUdjBcjvaepHBe8wou0ZtDM9TKom0hs_nx_AKy0dnXGNWI1qftTjAg=w1920-h979-ft"
+                        src="https://scontent.fhan5-1.fna.fbcdn.net/v/t39.30808-6/441898899_852103643621047_7500792948689136637_n.jpg?stp=dst-jpg_s960x960&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHc-X-BCrZNiXK68Z9vjdiQdhYmr9qtSzp2Fiav2q1LOrEy62irX-weT6_oRKqbXeJOLU41Nyo3x5pIb1OOL8ex&_nc_ohc=dOR_owzXorcQ7kNvgFiOYiD&_nc_ht=scontent.fhan5-1.fna&oh=00_AYBliLLkcJrc0zNkCUqBYi3ny4POXx97ImvLS_G4NLurbQ&oe=66553214"
                         alt=""></div>
             </div>
         </div>
@@ -216,3 +224,4 @@
 </body>
 
 </html>
+<?php ob_end_flush();?>
