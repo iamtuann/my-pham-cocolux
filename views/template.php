@@ -20,12 +20,24 @@
     case 'tim-kiem':
       include('views/category.php');
       break; 
-      case 'info':
-        include('views/info.php');
-        break;  
+    case 'info':
+      include('views/info.php');
+      break;  
     case 'change-password':
-    include('views/change-password.php');
-        break;               
+    include('views/change-password.php');           
+      break;      
+    case 'checkout':
+      include('views/checkout.php');
+      break;
+    case 'checkout-success':
+      include('views/checkout_success.php');
+      break;
+    case 'checkout-payment':
+      include('views/checkout_payment.php');
+      break;
+    case 'info':
+      include('views/info.php');
+      break;        
     default:
       require 'views/errors/404.php';
       break;
