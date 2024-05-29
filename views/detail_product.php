@@ -27,7 +27,7 @@
         mysqli_query($connect, $sql_insert_cart);
     }
 
-    header("Location: http://localhost/my-pham-cocolux/?page=gio-hang");
+    header("Location: ?page=gio-hang");
     exit();
     }
 

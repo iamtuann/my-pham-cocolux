@@ -40,7 +40,7 @@
         vertical-align: baseline;
         text-align: left;
     }
-    .cart-table .quantity-input {
+    .cart-table .quantity-cart-input {
         margin: auto;
         padding: 5px;
         width: 35px;
@@ -155,7 +155,7 @@ if ($num > 0){
                     <td>
                         <div class="quantity">
                             <a class="quantity-icon" href='?page=update-quantity&minus=<?php echo $row['product_id']; ?>'><i class="fa-solid fa-minus"></i></a>
-                               <input class="quantity-input" type="text" name="quantity" value="<?php echo $row['quantity'] ?>">
+                               <input class="quantity-cart-input" type="text" name="quantity" value="<?php echo $row['quantity'] ?>">
                             <a class="quantity-icon" href='?page=update-quantity&plus=<?php echo $row['product_id']; ?>'><i class="fa-solid fa-plus"></i></a>
                         </div>
                     </td>

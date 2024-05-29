@@ -4,7 +4,7 @@
         $user_id = $_SESSION['user_id'];
         $sql_update = "UPDATE cart_item SET quantity = quantity + 1 WHERE user_id = $user_id AND product_id = $product_id";
         mysqli_query($connect, $sql_update);
-        header("Location: /my-pham-cocolux/?page=gio-hang");
+        header("Location: ?page=gio-hang");
         exit();
     }
 
@@ -22,7 +22,7 @@
             echo "<script>alert('Số lượng sản phẩm phải lớn hơn hoặc bằng 1.'); window.location.href='/my-pham-cocolux/?page=gio-hang';</script>";
         }
 
-        header("Location: /my-pham-cocolux/?page=gio-hang");
+        header("Location: ?page=gio-hang");
         exit();
     }
 ?>
