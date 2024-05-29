@@ -19,6 +19,18 @@
       break;
     case 'tim-kiem':
       include('views/category.php');
+      break; 
+    case 'all-product':
+      include('views/category.php');
+      break;   
+    case "thuong-hieu":
+      include("views/brand.php");
+      break;  
+    case 'info':
+      include('views/info.php');
+      break;  
+    case 'change-password':
+    include('views/change-password.php');           
       break;      
     case 'checkout':
       include('views/checkout.php');
