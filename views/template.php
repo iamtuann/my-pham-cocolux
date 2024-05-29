@@ -19,13 +19,22 @@
       break;
     case 'tim-kiem':
       include('views/category.php');
-      break; 
+      break;
     case 'info':
       include('views/info.php');
-      break;  
+      break;
+    case 'thuong-hieu':
+        include('views/brand.php');
+        break;
+    case 'delete-product':
+        include('views/xoa_cart.php');
+        break;
+    case 'update-quantity':
+        include('views/update_quantity.php');
+        break;
     case 'change-password':
-    include('views/change-password.php');           
-      break;      
+    include('views/change-password.php');
+      break;
     case 'checkout':
       include('views/checkout.php');
       break;
@@ -37,7 +46,7 @@
       break;
     case 'info':
       include('views/info.php');
-      break;        
+      break;
     default:
       require 'views/errors/404.php';
       break;

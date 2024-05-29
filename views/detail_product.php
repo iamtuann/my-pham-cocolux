@@ -4,20 +4,34 @@
     $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 1;
 
     if (isset($_POST['themgiohang'])) {
-    $product_id = isset($_POST['id']);
-    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
-
-    if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id] += $quantity;
-    } else {
-        $_SESSION['cart'][$product_id] = $quantity;
+        if (!isset($_SESSION['user_id'])) {
+        echo "<script>alert('Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng.'); window.location.href='/my-pham-cocolux/login.php';</script>";
+        exit();
     }
 
-    header("Location: views/cart.php");
+    $product_id = isset($_POST['id']) ? (int)$_POST['id'] : $product_id;
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+
+    $user_id = $_SESSION['user_id'];
+
+    $sql_check_cart = "SELECT quantity FROM cart_item WHERE product_id = $product_id AND user_id = $user_id";
+    $result = mysqli_query($connect, $sql_check_cart);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $new_quantity = $row['quantity'] + $quantity;
+        $sql_update_cart = "UPDATE cart_item SET quantity = $new_quantity WHERE product_id = $product_id AND user_id = $user_id";
+        mysqli_query($connect, $sql_update_cart);
+    } else {
+        $sql_insert_cart = "INSERT INTO cart_item (product_id, quantity, user_id) VALUES ($product_id, $quantity, $user_id)";
+        mysqli_query($connect, $sql_insert_cart);
+    }
+
+    header("Location: http://localhost/my-pham-cocolux/?page=gio-hang");
     exit();
     }
 
-    $sql_detail = "SELECT p.*, pi.path_url, b.name AS brand_name
+    $sql_detail = "SELECT p.*, pi.path_url, b.name AS brand_name, pc.category_id
 					FROM product p
 					JOIN brand b ON p.brand_id = b.id
 					LEFT JOIN (
@@ -26,6 +40,7 @@
 						GROUP BY product_id
 					) pi ON p.id = pi.product_id
 					LEFT JOIN product_image pi ON pi.min_id = pi.id
+                    LEFT JOIN product_category pc ON p.id = pc.product_id
                     WHERE p.id= $product_id";
     $query_detail = mysqli_query($connect, $sql_detail);
 
@@ -41,7 +56,7 @@
                     <div>Trang chủ</div>
                 </a>
                 <div class="slash">/</div>
-                <a href="?page=danh-muc">Sản phẩm</a>
+                <a href="?page=danh-muc&id=<?= $row_detail['category_id'] ?>">Sản phẩm</a>
                 <div class="slash">/</div>
                 <div><?= $row_detail['name'] ?></div>
             </div>
@@ -78,9 +93,9 @@
                         <div class="quantity">
                             <div class="quantity-title">Số lượng:</div>
                             <div class="quantity-up-and-down">
-                                <a class="quantity-up"><i class="fa fa-plus" style="color: black;"></i></a>
-                                <input class="quantity-input" type="text" name="quantity" value="1">
                                 <a class="quantity-down"><i class="fa fa-minus" style="color: black;"></i></a>
+                                <input class="quantity-input" type="text" name="quantity" value="1">
+                                <a class="quantity-up"><i class="fa fa-plus" style="color: black;"></i></a>
                             </div>
                             <div class="remaining"><?= $row_detail['quantity'] - $row_detail['sold'] ?> sản phẩm có sẵn</div>
                         </div>

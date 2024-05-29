@@ -19,7 +19,7 @@
 	<div class="wp-products">
 		<div class="d-flex justify-content-between">
 			<h3 class="title">SẢN PHẨM HOT</h3>
-			<a class="view-all" href="?page=danh-muc">XEM TẤT CẢ</a>
+			<a class="view-all" href="?page=danh-muc&id=1">XEM TẤT CẢ</a>
 		</div>
 		<div class="list-products">
 			<?php
