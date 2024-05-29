@@ -1,10 +1,30 @@
 <?php
+  $shippingStatus = "";
+  if (isset($_GET['status'])) {
+    switch ($_GET['status']) {
+      case 'waiting':
+        $shippingStatus=0;
+        break;
+      case 'delivering':
+        $shippingStatus=1;
+        break;
+      case 'success':
+        $shippingStatus=2;
+        break;
+      case 'reject':
+        $shippingStatus=-1;
+        break;
+      default:
+        header('Location:?page=dashboard');
+        break;
+    }
+  }
   $sql="SELECT o.id as id, total_price, full_name, phone, address, o.status as status, payment, note, o.create_date as order_date,
     oi.id as oi_id, oi.quantity as quantity, p.id as product_id, p.name as product_name
     FROM `order` o
     INNER JOIN `order_item` oi ON o.id = oi.order_id
     INNER JOIN `product` p ON oi.product_id = p.id
-    where shipping_status = 0";
+    where shipping_status = '$shippingStatus'";
   $result = mysqli_query($connect, $sql);
   
   $orders = [];
@@ -34,41 +54,54 @@
     }
   }
 
-  if (isset($_GET['accept_id'])) {
+  if (isset($_GET['accept_id']) && $shippingStatus==0) {
     $acceptId=$_GET['accept_id'];
     $sql = "UPDATE `order` SET `shipping_status`='1' WHERE id='$acceptId'";
     $result = mysqli_query($connect, $sql);
     if($result) {
-      header('Location: ?page=order-waiting');
+      header('Location: ?page=orders&status=waiting');
     } else {
       header('Location: ?page=dashboard');
     }
-  } elseif (isset($_GET['reject_id'])) {
+  } elseif (isset($_GET['reject_id']) && $shippingStatus==0) {
     $rejectId=$_GET['reject_id'];
     $sql = "UPDATE `order` SET `shipping_status`='-1' WHERE id='$rejectId'";
     $result = mysqli_query($connect, $sql);
     if($result) {
-      header('Location: ?page=order-waiting');
+      header('Location: ?page=orders&status=waiting');
     } else {
       header('Location: ?page=dashboard');
     }
   }
 ?>
-<style>
-  .ad-order-wrap {
-    padding: 12px 16px;
-    border: 1px solid #333;
-    margin-bottom: 16px;
-    border-radius: 12px;
-  }
-</style>
+
 <div class="container pt-4">
   <h4 class="my-2 text-center">
-    Đơn hàng chờ phê duyệt
+    <?php
+      switch ($shippingStatus) {
+        case '0':
+          echo "Đơn hàng chờ phê duyệt";
+          break;
+        case '1':
+          echo "Đơn hàng đang vận chuyển";
+          break;
+        case '2':
+          echo "Đơn hàng đã giao thành công";
+          break;
+        case '-1':
+          echo "Đơn hàng đã hủy bỏ";
+          break;
+        default:
+          break;
+      }
+    ?>
   </h4>
   <div class="">
     <?php
-      foreach ($orders as $order) {
+      if (count($orders) <= 0) {
+        echo "<p class='text-center'>Không có đơn hàng nào</p>";
+      } else {
+        foreach ($orders as $order) {
     ?>
       <div class="ad-order-wrap">
         <div>
@@ -93,20 +126,33 @@
         <hr class="my-2">
         <div class="d-flex align-item-center justify-content-between">
           <div class="">
-            Tổng tiền: 
-            <?php echo $order['total_price'] ?>
+            <div>Tổng tiền: <?php echo $order['total_price'] ?></div>
+            <?php
+              if ($order['payment']==0) {
+                echo "<div>Thanh toán khi nhận hàng</div>";
+              } elseif ($order['payment']==1) {
+                echo "<div>Thanh toán chuyển khoản</div>";
+              }
+            ?>
           </div>
-          <div class="d-flex column-gap-3">
-            <a href="<?php echo '?page=order-waiting&reject_id='.$order['id'] ?>">
-              <button class="btn btn-danger">Hủy</button>
-            </a>
-            <a href="<?php echo '?page=order-waiting&accept_id='.$order['id'] ?>">
-              <button class="btn btn-success">Xác nhận</button>
-            </a>
-          </div>
+          <?php
+            if ($shippingStatus==0) {
+          ?>
+            <div class="d-flex column-gap-3">
+              <a href="<?php echo '?page=orders&status=waiting&reject_id='.$order['id'] ?>">
+                <button class="btn btn-danger">Hủy</button>
+              </a>
+              <a href="<?php echo '?page=orders&status=waiting&accept_id='.$order['id'] ?>">
+                <button class="btn btn-success">Xác nhận</button>
+              </a>
+            </div>
+          <?php
+            }
+          ?>
         </div>
       </div>
     <?php
+        }
       }
     ?>
   </div>

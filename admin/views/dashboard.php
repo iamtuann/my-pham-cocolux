@@ -1,10 +1,23 @@
 <?php
   $sql="SELECT shipping_status, COUNT(*) AS count FROM `order` GROUP BY shipping_status ORDER BY shipping_status ASC";
   $result = mysqli_query($connect, $sql);
-  $order_count = [];
+  $order_count = [
+    array("status"=>"-1", "count"=>"0"),
+    array("status"=>"0", "count"=>"0"),
+    array("status"=>"1", "count"=>"0"),
+    array("status"=>"2", "count"=>"0")
+  ];
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      $order_count[] = $row;
+      if ($row['shipping_status'] == -1) {
+        $order_count[0]['count'] = $row['count'];
+      } elseif ($row['shipping_status']==0) {
+        $order_count[1]['count'] = $row['count'];
+      } elseif ($row['shipping_status']==1) {
+        $order_count[2]['count'] = $row['count'];
+      } elseif ($row['shipping_status']==2) {
+        $order_count[3]['count'] = $row['count'];
+      }
     }
   }
 ?>
@@ -37,42 +50,42 @@
 <div class="container">
   <div class="row mt-4 gy-3">
     <div class="col-12 col-md-6">
-      <a href="?page=order-waiting" class="admin-order-status order-waiting">
+      <a href="?page=orders&status=waiting" class="admin-order-status order-waiting">
         <div class="order-status-title py-2">
           Chờ phê duyệt
         </div>
         <div class="order-number">
-          <?php echo isset($order_count[1]) ? $order_count[1]['count'] : '0' ?> đơn hàng
+          <?php echo $order_count[1]['count']?> đơn hàng
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6">
-      <a href="?page=order-delivering" class="admin-order-status order-delivering">
+      <a href="?page=orders&status=delivering" class="admin-order-status order-delivering">
         <div class="order-status-title py-2">
           Đang giao hàng
         </div>
         <div class="order-number">
-          <?php echo isset($order_count[2]) ? $order_count[2]['count'] : '0' ?> đơn hàng
+          <?php echo $order_count[2]['count'] ?> đơn hàng
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6">
-      <a href="?page=order-success" class="admin-order-status order-success">
+      <a href="?page=orders&status=success" class="admin-order-status order-success">
         <div class="order-status-title py-2">
           Đã giao hàng
         </div>
         <div class="order-number">
-          <?php echo isset($order_count[3]) ? $order_count[3]['count'] : '0' ?> đơn hàng
+          <?php echo $order_count[3]['count'] ?> đơn hàng
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6">
-      <a href="?page=order-reject" class="admin-order-status order-reject">
+      <a href="?page=orders&status=reject" class="admin-order-status order-reject">
         <div class="order-status-title py-2">
           Đã hủy
         </div>
         <div class="order-number">
-          <?php echo isset($order_count[0]) ? $order_count[0]['count'] : '0' ?> đơn hàng
+          <?php echo $order_count[0]['count'] ?> đơn hàng
         </div>
       </a>
     </div>

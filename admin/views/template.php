@@ -29,8 +29,8 @@
     case "user":
       require 'views/user.php';
       break;
-    case "order-waiting":
-      require 'views/order_wait.php';
+    case "orders":
+      require 'views/order_list.php';
       break;
     default:
       require 'views/errors/404.php';
