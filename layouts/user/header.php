@@ -11,7 +11,7 @@
         </div>
         <div class="header-right">
 
-            <?php echo isset($_SESSION["email"]) ? '<a href="views/login.php" class="log-in">Đăng nhập</a>
+            <?php echo empty($_SESSION["email"]) ? '<a href="views/login.php" class="log-in">Đăng nhập</a>
             <a href="views/signin.php" class="sign-in">Đăng ký</a>' : "<div class='information'>Welcome, ". $_SESSION["name"] ." <div class='menu-content menu-infor'>
             <div class='menu-item'>
                 <a href='?page=info' class='menu-btn'>
