@@ -70,3 +70,9 @@ th, td {
   width: 100%;
   margin-bottom: 8px;
 }
+.ad-order-wrap {
+  padding: 12px 16px;
+  border: 1px solid #333;
+  margin-bottom: 16px;
+  border-radius: 12px;
+}
