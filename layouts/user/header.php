@@ -1,12 +1,19 @@
 <?php
-ob_start();
- $query = "SELECT * FROM category";
- $result = mysqli_query($connect,$query);
+    ob_start();
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    $query = "SELECT * FROM category";
+    $result = mysqli_query($connect,$query);
+    $total_items_sql = "SELECT COUNT(*) FROM cart_item WHERE user_id = $user_id";
+    if ($user_id != null) {
+    $total_items_sql = "SELECT COUNT(*) FROM cart_item WHERE user_id = $user_id";
+    } else {
+    $total_items_sql = "SELECT 0";
+    }
+    $total_items_result = mysqli_query($connect, $total_items_sql);
     if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["keyword"])) {
         header("Location:?page=tim-kiem&key=".$_POST["keyword"]);
-    }
-   
- ?>
+    } 
+?>
 <div class="top-header">
     <div class="container">
         <div class="header-left">
@@ -44,13 +51,19 @@ ob_start();
                         <i class="far fa-search"></i>
                     </button>
                 </form>
+                <?php
+                while($row_items = mysqli_fetch_array($total_items_result)) {
+                ?>
                 <a class="header-action" href="?page=gio-hang">
                     <div class="position-relative">
                         <i class="fal fa-shopping-cart"></i>
-                        <span class="count">1</span>
+                        <span class="count"><?php echo $row_items[0] ?></span>
                     </div>
                     <span>Giỏ hàng</span>
                 </a>
+                <?php
+                }
+                ?>
                 <div class="header-action" href="/cart">
                     <i class="fal fa-user-headset"></i>
                     <span>Hỗ trợ</span>
