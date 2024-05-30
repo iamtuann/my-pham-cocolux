@@ -1,45 +1,19 @@
 <?php
-$severname="localhost";
-$username="root";
-$password="";
-$database="my_pham_cocolux";
-
-$port="3307";
-$connect= new mysqli($severname,$username,$password,$database, $port);
-if ($connect->connect_error) {
-  die("Kết nối thất bại: " . $connect->connect_error);
-}
-
-
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $product_id = $_GET['id'];
 
-   
-    $stmt = $connect->prepare("DELETE FROM cart_item WHERE product_id = '$product_id'");
-    if ($stmt) {
-        
-        $stmt->bind_param("i", $product_id);
+    $stmt = $connect->prepare("DELETE FROM cart_item WHERE product_id = ?");
+    $stmt->bind_param("i", $product_id);
 
-       
-        if ($stmt->execute()) {
-        
-            header('Location: cart.php');
-            exit;
-        } else {
-         
-            echo "Lỗi thực thi: " . $stmt->error;
-        }
-
-    
-        $stmt->close();
+    if ($stmt->execute()) {
+        echo "<script>alert('Xóa sản phẩm khỏi giỏ hàng thành công.'); window.location.href='http://localhost/my-pham-cocolux/?page=gio-hang';</script>";
+        exit;
     } else {
-       
-        echo "Lỗi chuẩn bị câu lệnh: " . $connect->error;
+        echo "<script>alert('Đã xảy ra lỗi khi xóa sản phẩm khỏi giỏ hàng.'); window.location.href='http://localhost/my-pham-cocolux/?page=gio-hang';</script>";
+        exit;
     }
 } else {
-    echo "product_id không hợp lệ.";
+    echo "<script>alert('ID sản phẩm không hợp lệ.'); window.location.href='http://localhost/my-pham-cocolux/?page=gio-hang';</script>";
+    exit;
 }
-
-
-$connect->close();
 ?>
