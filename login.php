@@ -6,6 +6,7 @@
         unset($_SESSION['email']) ;
         unset($_SESSION['user_id']);
         unset($_SESSION['name']);
+        unset($_SESSION['role']);
     }
     if (isset($_SESSION["isSign-in"]) && $_SESSION["isSign-in"] == "success") {
         unset($_SESSION["isSign-in"]);
@@ -28,6 +29,10 @@
                 $_SESSION['name']= $row_data['last_name'];
                 header("Location:index.php");
             } elseif($row_data["role_id"] == 1) {
+                $_SESSION['email'] = $row_data['email'];
+                $_SESSION['user_id']= $row_data['id'];
+                $_SESSION['name']= $row_data['last_name'];
+                $_SESSION['role'] = 'admin';
                 header("Location:admin/index.php");
             }
 		}
