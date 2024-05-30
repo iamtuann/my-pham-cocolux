@@ -22,7 +22,7 @@
 <div class="wp-brands">
 	<div class="container">
 		<div class="brands-nav">
-			<a class="home-page-link" href="/my-pham-cocolux">
+			<a class="home-page-link" href="index.php">
 				<i class="fa-solid fa-house-chimney"></i>
 				<div>Trang chủ</div>
 			</a>

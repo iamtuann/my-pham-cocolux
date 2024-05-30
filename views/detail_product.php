@@ -5,7 +5,7 @@
 
     if (isset($_POST['themgiohang'])) {
         if (!isset($_SESSION['user_id'])) {
-        echo "<script>alert('Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng.'); window.location.href='/my-pham-cocolux/login.php';</script>";
+        echo "<script>alert('Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng.'); window.location.href='login.php';</script>";
         exit();
     }
 
@@ -51,7 +51,7 @@
     <div class="container">
         <div class="detail-product-nav">
             <div class="nav-detail-product-child">
-                <a class="home-page-link" href="/my-pham-cocolux">
+                <a class="home-page-link" href="index.php">
                     <i class="fa-solid fa-house-chimney"></i>
                     <div>Trang chủ</div>
                 </a>
