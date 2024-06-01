@@ -12,14 +12,41 @@
       include('views/cart.php');
       break;
     case 'san-pham':
-      include('views/product.php');
+      include('views/detail_product.php');
       break;
     case 'danh-muc':
       include('views/category.php');
       break;
     case 'tim-kiem':
       include('views/category.php');
-      break;      
+      break; 
+    case 'all-product':
+      include('views/category.php');
+      break;   
+    case 'info':
+      include('views/info.php');
+      break;
+    case 'thuong-hieu':
+        include('views/brand.php');
+        break;
+    case 'delete-product':
+        include('views/xoa_cart.php');
+        break;
+    case 'update-quantity':
+        include('views/update_quantity.php');
+        break;
+    case 'change-password':
+    include('views/change-password.php');
+      break;
+    case 'checkout':
+      include('views/checkout.php');
+      break;
+    case 'checkout-success':
+      include('views/checkout_success.php');
+      break;
+    case 'checkout-payment':
+      include('views/checkout_payment.php');
+      break;
     default:
       require 'views/errors/404.php';
       break;

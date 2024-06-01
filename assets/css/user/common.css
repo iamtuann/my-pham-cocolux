@@ -9,3 +9,7 @@ html, body {
   font-weight: 400;
   color: #000;
 }
+
+.main-content {
+  background-color: #f3f3f3;
+}

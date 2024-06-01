@@ -8,14 +8,14 @@
 	<div class="wp-brands">
 		<div class="d-flex justify-content-between">
 			<h3 class="title">THƯƠNG HIỆU NỔI BẬT</h3>
-			<a class="view-all" href="brands">XEM TẤT CẢ</a>
+			<a class="view-all" href="?page=thuong-hieu">XEM TẤT CẢ</a>
 		</div>
 		<div class="list-brands">
 			<?php
 			while ($row2 = mysqli_fetch_array($query_show_brand)) {
 			?>
 				<div class="wp-brand-item">
-					<a style="text-decoration: none;" href="">
+					<a style="text-decoration: none;">
 						<img class="brand-img" src=<?= $row2['image'] ?>>
 						<div class="brand-name"><?= $row2['name'] ?></div>
 					</a>

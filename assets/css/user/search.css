@@ -185,12 +185,12 @@
   transition: 0.1s ease-in-out;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: red;
-}
+} */
 .pagination {
   gap: 8px;
 }
@@ -239,4 +239,8 @@
 .pagination .page-link.active {
   background: #000;
   color: #fff;
+}
+.page-link.disabled {
+  pointer-events: none;
+  opacity: 0;
 }

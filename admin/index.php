@@ -33,6 +33,12 @@
   <title>Cocolux Admin</title>
 </head>
 <body>
+  <?php
+    session_start();
+    if (!isset($_SESSION['role']) && $_SESSION['role'] != 'admin') {
+      header('Location: ../index.php');
+    }
+  ?>
   <div class="d-flex h-100">
     <?php
       include("../config/connect.php");
