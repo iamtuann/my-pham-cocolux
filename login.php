@@ -203,7 +203,7 @@
     <section class="login">
         <div class="login_box">
             <div class="left">
-                <div class="top_link"><a href="http://localhost/my-pham-cocolux/"><img
+                <div class="top_link"><a href="index.php"><img
                             src="https://scontent.fhan5-1.fna.fbcdn.net/v/t39.30808-6/441898899_852103643621047_7500792948689136637_n.jpg?stp=dst-jpg_s960x960&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHc-X-BCrZNiXK68Z9vjdiQdhYmr9qtSzp2Fiav2q1LOrEy62irX-weT6_oRKqbXeJOLU41Nyo3x5pIb1OOL8ex&_nc_ohc=dOR_owzXorcQ7kNvgFiOYiD&_nc_ht=scontent.fhan5-1.fna&oh=00_AYBliLLkcJrc0zNkCUqBYi3ny4POXx97ImvLS_G4NLurbQ&oe=66553214"
                             alt="">Về trang chủ</a></div>
                 <div class="contact">

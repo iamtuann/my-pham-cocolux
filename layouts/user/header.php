@@ -40,7 +40,7 @@
 <header class="header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center gx-4">
-            <a href="http://localhost/my-pham-cocolux">
+            <a href="index.php">
                 <img src="assets/images/logo-full-black-cocolux.png" alt="">
             </a>
             <div class="d-flex align-items-center justify-content-end column-gap-4">

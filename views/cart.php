@@ -16,7 +16,7 @@
     $allprice = 0;
     $num = mysqli_num_rows($query_cart);
     } else {
-        echo "<script>alert('Vui lòng đăng nhập để xem giỏ hàng.'); window.location.href='/my-pham-cocolux/login.php';</script>";
+        echo "<script>alert('Vui lòng đăng nhập để xem giỏ hàng.'); window.location.href='login.php';</script>";
         exit();
     }
 ?>
@@ -188,7 +188,7 @@ if ($num > 0){
     <div class="empty-cart">
         <img class="empty-cart-img" src="https://assets.materialup.com/uploads/16e7d0ed-140b-4f86-9b7e-d9d1c04edb2b/preview.png" alt="Empty cart">
         <div class="empty-cart-text">Giỏ hàng của bạn đang trống</div>
-        <a class="back-to-home-page" href="/my-pham-cocolux">
+        <a class="back-to-home-page" href="index.php">
             <div class="empty-cart-button">Tiếp tục mua hàng</div>
         </a>
     </div>
