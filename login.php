@@ -25,8 +25,8 @@
 			$row_data = mysqli_fetch_array($row);
             if($row_data["role_id"] == 2) {
                 $_SESSION['email'] = $row_data['email'];
-                $_SESSION['user_id']= $row_data['id'];
-                $_SESSION['name']= $row_data['last_name'];
+                $_SESSION['user_id'] = $row_data['id'];
+                $_SESSION['name'] = $row_data['last_name'];
                 header("Location:index.php");
             } elseif($row_data["role_id"] == 1) {
                 $_SESSION['email'] = $row_data['email'];
