@@ -150,7 +150,7 @@
             ?>
                         <a href="<?php echo '?page=san-pham&id=' . $product['product_id'] ?>"
                             class="checkout-item-product">
-                            <img src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>">
+                            <img src="<?php echo "uploads/". $product['image'] ?>" alt="<?php echo $product['name'] ?>">
                             <div class="checkout-item-info">
                                 <p class="checkout-item-title mb-0"><?php echo $product['name'] ?></p>
                                 <div class="checkout-item-quantity mb-0">

@@ -299,8 +299,8 @@
                         <a href="?page=san-pham&id=<?=$row2["id"] ?>" class="product-template">
                             <?php echo $row2["price_original"] > $row2["price_final"] ? '<div class="product-discount"><span class="pe-1">' . floor(100 * (($row2["price_original"] - $row2["price_final"])) / ($row2["price_original"])) . '%</span></div>' : ''; ?>
                             <div class="product-thumbnail ">
-                                <img src="<?php echo $row2["path_url"] ?>"
-                                    alt="Chì Kẻ Viền Môi Romand Lip Matte Pencil - 02 Dovey Pink" class="img-fluid">
+                                <img src="<?php echo "uploads/". $row2["path_url"] ?>"
+                                    alt="<?= $row2["name"] ?>" class="img-fluid">
                             </div>
                             <div class="product-price">
                                 <div class="public-price">

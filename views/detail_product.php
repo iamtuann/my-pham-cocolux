@@ -41,7 +41,7 @@
 					) pi ON p.id = pi.product_id
 					LEFT JOIN product_image pi ON pi.min_id = pi.id
                     LEFT JOIN product_category pc ON p.id = pc.product_id
-                    WHERE p.id= $product_id";
+                    WHERE p.id= $product_id group by p.id";
     $query_detail = mysqli_query($connect, $sql_detail);
 
     while ($row_detail = mysqli_fetch_array($query_detail)) {
@@ -68,7 +68,7 @@
             <div class="detail-product">
                 <div class="product">
                     <div class="product-img">
-                        <img src="<?= $row_detail['path_url'] ?>">
+                        <img src="uploads/<?= $row_detail['path_url'] ?>">
                     </div>
                     <div class="product-infor">
                         <div class="product-brand"><?= $row_detail['brand_name'] ?></div>
@@ -176,7 +176,7 @@
                 ?>
                     <div class="wp-product-item">
                         <a style="text-decoration: none;" href="?page=san-pham&id=<?= $row_same_brand['id'] ?>">
-                            <img class="img" src=<?= $row_same_brand['path_url'] ?>>
+                            <img class="img" src="uploads/<?= $row_same_brand['path_url'] ?>">
                             <div class="item-content">
                                 <div class="price">
                                     <div class="price_final"><?= number_format($row_same_brand['price_final'], 0, ',', '.') . ' VNĐ'  ?></div>
