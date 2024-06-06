@@ -149,7 +149,7 @@ if ($num > 0){
                     $allprice += $row['quantity']*$row['price_final'];
             ?>
                 <tr class="cart-product">
-                    <td><img class="cart-product-img" src=<?= $row['path_url'] ?>></td>
+                    <td><img class="cart-product-img" src="uploads/<?= $row['path_url'] ?>"></td>
                     <td style="width: 100%;"><div class="fw-bold"><?= $row['name'] ?></div></td>
                     <td><div><?= number_format($row['price_final'], 0, ',', '.') . ' VNĐ'  ?></div></td>
                     <td>
