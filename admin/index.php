@@ -50,7 +50,7 @@
       header('Location: ../index.php');
     }
   ?>
-    <div class="d-flex h-100">
+    <div class="d-flex h-100 min-vh-100">
         <?php
       include("../config/connect.php");
       include("../layouts/admin/sidebar.php");

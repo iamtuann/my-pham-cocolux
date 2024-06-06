@@ -64,7 +64,7 @@
                        if(mysqli_num_rows($queryCheck) > 0) {
                              echo '<script>alert("Email đã tồn tại")</script>';
                        } else {
-                        $sql_dangky = "INSERT INTO user(first_name,last_name,full_name,phone_number,email,password,role_id) VALUE('".$array[0]."','".$array[count($array)-1]."','".$tenkhachhang."','".$dienthoai."','".$email."','".$matkhau."','".$role_id."')";
+                        $sql_dangky = "INSERT INTO user(first_name,last_name,full_name,phone_number,email,password,role_id,status) VALUE('".$array[0]."','".$array[count($array)-1]."','".$tenkhachhang."','".$dienthoai."','".$email."','".$matkhau."','".$role_id."', 1)";
                             $query_dangky=mysqli_query($connect,$sql_dangky);
                         
                             if($query_dangky){
