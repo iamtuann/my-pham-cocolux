@@ -27,7 +27,7 @@
 			?>
             <div class="wp-product-item">
                 <a style="text-decoration: none;" href="?page=san-pham&id=<?= $row['id'] ?>">
-                    <img class="product-img" src=<?= $row['path_url'] ?>>
+                    <img class="product-img" src="uploads/<?= $row['path_url'] ?>">
                     <div class="item-content">
                         <div class="price">
                             <div class="price_final"><?= number_format($row['price_final'], 0, ',', '.') . ' VNĐ'  ?>

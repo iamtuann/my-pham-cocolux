@@ -1,5 +1,5 @@
 <div class="sidebar-wrap">
-  <a href="?page=dashboard">
+  <a class="d-block w-100 text-center mb-4" href="?page=dashboard">
     <img src="../assets/images/logo-full-black-cocolux.png" alt="">
   </a>
   <div class="sb-list-nav">
