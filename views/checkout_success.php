@@ -28,5 +28,6 @@
     <img src="assets/images/check.png" alt="">
     <h4 class="mt-4">Thanks you for your order.</h4>
     <p class="mt-2">Chúng tôi sẽ sớm xác nhận đơn hàng và chuyển đến bạn sớm nhất</p>
+    <a href="?page=home" class="py-3 d-block text-center">Trở về trang chủ</a>
   </div>
 </div>
