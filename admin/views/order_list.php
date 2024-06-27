@@ -24,7 +24,8 @@
     FROM `order` o
     INNER JOIN `order_item` oi ON o.id = oi.order_id
     INNER JOIN `product` p ON oi.product_id = p.id
-    where shipping_status = '$shippingStatus'";
+    where shipping_status = '$shippingStatus'
+    ORDER BY  o.create_date DESC";
   $result = mysqli_query($connect, $sql);
   
   $orders = [];
@@ -131,7 +132,12 @@
               if ($order['payment']==0) {
                 echo "<div>Thanh toán khi nhận hàng</div>";
               } elseif ($order['payment']==1) {
-                echo "<div>Thanh toán chuyển khoản</div>";
+                echo "<span>Thanh toán chuyển khoản</span>";
+                if ($order['status']==1) {
+                  echo " <span class='text-success'>(Đã thanh toán)</span>";
+                } else {
+                  echo " <span class='text-danger'>(Chưa thanh toán)</span>";
+                }
               }
             ?>
           </div>
